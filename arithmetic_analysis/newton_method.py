@@ -1,25 +1,28 @@
-"""Newton's Method."""
+"""
+Based on github.com/TheAlgorithms/Python version
+Newton's Method - https://en.wikipedia.org/wiki/Newton%27s_method
+"""
 
-# Newton's Method - https://en.wikipedia.org/wiki/Newton%27s_method
-
-
-# function is the f(x) and function1 is the f'(x)
-def newton(function, function1, startingInt):
-    x_n = startingInt
+def newton(function1, function2, starting_int):
+    """
+    function1 is the f(x) and function2 is the f'(x)
+    """
+    precision = 10 ** -5
+    x0 = starting_int
     while True:
-        x_n1 = x_n - function(x_n) / function1(x_n)
-        if abs(x_n - x_n1) < 10 ** -5:
-            return x_n1
-        x_n = x_n1
+        x1 = x0 - function1(x0) / function2(x0)
+        if abs(x0 - x1) < precision:
+            return x1
+        x0 = x1
 
 
 def f(x):
     return (x ** 3) - (2 * x) - 5
 
 
-def f1(x):
+def f2(x):
     return 3 * (x ** 2) - 2
 
 
 if __name__ == "__main__":
-    print(newton(f, f1, 3))
+    print(newton(f, f2, 3))
